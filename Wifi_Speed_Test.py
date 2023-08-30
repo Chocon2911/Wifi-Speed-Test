@@ -147,7 +147,7 @@ def Run():
 def CheckSpeed():
     global runLoop
     global slowSpeedList
-    slowSpeed = 50
+    slowSpeed = 5
     slowLimit = 6
     if(downloadSpeed < slowSpeed):
         slowSpeedList.append(downloadSpeed)
