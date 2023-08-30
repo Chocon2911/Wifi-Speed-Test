@@ -151,7 +151,7 @@ def CheckSpeed():
     slowLimit = 6
     if(downloadSpeed < slowSpeed):
         slowSpeedList.append(downloadSpeed)
-        runLoop = 0
+        runLoop = 2
     if(downloadSpeed >= slowSpeed):
         slowSpeedList.clear()
         runLoop = 50
