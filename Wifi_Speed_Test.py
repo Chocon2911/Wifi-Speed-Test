@@ -166,27 +166,28 @@ def GetSheetName():
     return f"{today}"
 
 def RunSheet():
-    global SPREADSHEET_ID
-    if IsInternetAvailable():
-        try:
-            credentials = None
-            if os.path.exists("token.json"):
-                credentials = Credentials.from_authorized_user_file("token.json", SCOPES)
-            if not credentials or not credentials.valid:
-                if credentials and credentials.expired and credentials.refresh_token:
-                    credentials.refresh(Request())
-                else:
-                    flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
-                    credentials = flow.run_local_server(port=0)
-                with open("token.json", "w") as token:
-                    token.write(credentials.to_json())
-            CreateSheet(credentials)
-        except HttpError as error:
-            print(error)
-    else:
-        print("no internet")
-        time.sleep(60)
-        RunSheet()
+    sheetName = GetSheetName()
+    while True:
+        if IsInternetAvailable():
+            try:
+                credentials = None
+                if os.path.exists("token.json"):
+                    credentials = Credentials.from_authorized_user_file("token.json", SCOPES)
+                if not credentials or not credentials.valid:
+                    if credentials and credentials.expired and credentials.refresh_token:
+                        credentials.refresh(Request())
+                    else:
+                        flow = InstalledAppFlow.from_client_secrets_file("credentials.json", SCOPES)
+                        credentials = flow.run_local_server(port=0)
+                    with open("token.json", "w") as token:
+                        token.write(credentials.to_json())
+                CreateSheet(credentials)
+                break
+            except HttpError as error:
+                print(error)
+        else:
+            print("no internet")
+            time.sleep(60)
 
 def CreateSheet(credentials):
         global SPREADSHEET_ID
