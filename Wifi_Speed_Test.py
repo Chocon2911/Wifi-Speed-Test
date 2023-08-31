@@ -23,7 +23,7 @@ sheetName = None
 
 emailSender = "speed-test@liva.com.vn"
 passwordSender = "#&u){13e7$m_"
-emailReceiverList = ["lavietdung@gmail.com",
+emailReceiverList = [# "lavietdung@gmail.com",
     "huylexuan2911@gmail.com"]
 
 serverMail = "mail.liva.com.vn"

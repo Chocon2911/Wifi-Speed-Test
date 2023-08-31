@@ -1,0 +1,10 @@
+FROM ubuntu:lastest
+
+RUN apt update
+RUN apt install python3 -y
+
+WORKDIR /usr/app/src
+
+COPY Wifi_Speed_Test.py ./
+
+CMD [ "python3", "./Wifi_Speed_Test.py"]
