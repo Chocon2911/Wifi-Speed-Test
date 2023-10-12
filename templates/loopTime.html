@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src="https://kit.fontawesome.com/ae360af17e.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <title>WifiSpeedTest-Home</title>
+</head>
+
+<header>
+    <div class="title">
+        <main class="content px-3 py-2">
+            <div class="container-fluid">
+                <div class="mb-3">
+                    <h3>WifiSpeedTest</h3>
+                </div>
+            </div>
+        </main>
+    </div>
+</header>
+
+<body>
+
+    <div class="wrapper">
+        <!-- Sidebar -->
+        <aside id="sidebar">
+            <div class="h-100">
+                <div class="sidebar-logo">
+                    <a href="#">Menu</a>
+                </div>
+                <!-- sidebar navigation -->
+                <ul class="sidebar-nav">
+                    <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#data"
+                        aria-expanded="false" aria-controls="data">
+                        Data Customization
+                    </a>
+                    <ul id="data" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li class="sidebar-item">
+                            <a href="{{ url_for('emailReceivers') }}" class="sidebar-link">
+                                • Email Receivers
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url_for('loopTime') }}" class="sidebar-link ">
+                                • Loop Time
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="{{ url_for('dailyTime') }}" class="sidebar-link">
+                                • Daily Time
+                            </a>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </aside>
+        <!-- main component -->
+        <div class="main">
+            <nav class="navbar navbar-expand px-3 border-bottom">
+                <!-- button for sidebar toggle -->
+                <button class="btn bg-white" type="button" data-bs-theme="white">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </nav>
+            <div class="container mt-5">
+                <!-- Enter runLoop time -->
+                <form method="POST">
+                    <div class="form-group">
+                        <label for="normal_runLoop">At Normal RunLoop:</label>
+                        <span title="runLoop time you want when wifi speed is normal">(?)</span>
+                        <input type="number" class="form-control" id="normal_runLoop" name="normal_runLoop" min="2"
+                            max="999" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="slow_runLoop">At Slow RunLoop:</label>
+                        <span title="runLoop time you want when wifi speed starts running slow">(?)</span>
+                        <input type="number" class="form-control" id="slow_runLoop" name="slow_runLoop" min="2"
+                            max="999" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="resting_runLoop">At Resting RunLoop:</label>
+                        <span
+                            title="runloop time you want after wifi speed has been running slow for a while or no internet connection">(?)</span>
+                        <input type="number" class="form-control" id="resting_runLoop" name="resting_runLoop" min="2"
+                            max="999" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="slow_speed">Slow Speed:</label>
+                        <span title="value of speed that you want to define as slow">(?)</span>
+                        <input type="number" class="form-control" id="slow_speed" name="slow_speed" min="0" max="50"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="slow_speed_list">List Limit:</label>
+                        <span title="how much slow speed before getting into resting mode">(?)</span>
+                        <input type="number" class="form-control mb-3" id="slow_speed_list" name="slow_speed_list"
+                            min="1" max="99" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
+        </script>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
