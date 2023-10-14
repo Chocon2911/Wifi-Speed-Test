@@ -54,5 +54,3 @@ class DataBase():
         DataBase.speed = list(df['speed'])
 
         conn.close()
-
-DataBase.readDb()
