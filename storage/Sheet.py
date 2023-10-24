@@ -1,6 +1,7 @@
 import os
 import time
 
+from datetime import datetime
 from storage.Other import Other
 
 from google.auth.transport.requests import Request
@@ -36,12 +37,15 @@ class Sheet:
                 print("no internet to runSheet, wait 1 minute to try again")
                 time.sleep(60)
 
+    def GetTodayName():
+        return datetime.now().strftime("%Y-%m-%d %H")
+
     def CreateSheet(credentials):
             service = build("sheets", "v4", credentials=credentials)
             # create google sheet file
             spreadsheet_body = {
                 "properties": {
-                    "title": Other.GetTodayName()
+                    "title": Sheet.GetTodayName()
                 }
             }
 

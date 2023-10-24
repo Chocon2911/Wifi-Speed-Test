@@ -1,0 +1,11 @@
+[Unit]
+Description=App py
+
+[Service]
+ExecStart=/bin/bash -c "cd /home/student/Downloads/LeXuanHuy/WifiSpeedTest && python3 App.py"
+Restart=always
+RestartSec=10
+User=student
+
+[Install]
+WantedBy=multi-user.target

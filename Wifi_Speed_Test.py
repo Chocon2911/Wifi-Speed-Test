@@ -40,6 +40,7 @@ class Run:
 
             # SpeedFile.checkFile(downloadSpeed, downloadTime_time)
             Run.CheckSpeed(downloadSpeed)
+            DailyTimeFile.readFile()
         else:
             downloadSpeed = 0
             downloadTime_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -67,7 +68,6 @@ class Run:
         Run.ScheduleTime()
 
 def Main():
-    global runLoop
     Run.ScheduleTime()
 
     while True:

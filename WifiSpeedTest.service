@@ -1,0 +1,11 @@
+[Unit]
+Description=Wifi_Speed_Test py
+
+[Service]
+ExecStart=/bin/bash -c "cd /home/student/Downloads/LeXuanHuy/WifiSpeedTest && python3 Wifi_Speed_Test.py"
+Restart=always
+RestartSec=10
+User=student
+
+[Install]
+WantedBy=multi-user.target

@@ -1,7 +1,15 @@
+import os
+
 from flask import Flask, render_template, request, redirect, url_for
 from storage.EmailFile import EmailFile
+from storage.DailyTimeFile import DailyTimeFile
+from waitress import serve
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__, static_folder='static')
+port = os.getenv("FLASK_PORT")
 
 # Mật khẩu cho trang web
 USERNAME = "toilaai"
@@ -28,7 +36,6 @@ def Login():
 
 @app.route('/home', methods=['GET', 'POST'])
 def home():
-
     return render_template('home.html')
 
 @app.route('/emailReceivers', methods=['GET', 'POST'])
@@ -65,8 +72,9 @@ def dailyTime():
     if request.method == 'POST':
         with open("data/daily_time.txt", "w") as file:
             file.write(f"{request.form['daily_time']}")
+        DailyTimeFile.readFile()
 
     return render_template('dailyTime.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
+    
+if __name__ == '__main__':                  
+    serve(app, host='localhost', port=int(port), threads=2)
